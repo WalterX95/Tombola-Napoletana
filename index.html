@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style2.css" type="text/css">
+    <link rel="stylesheet" href="/css/modal/modal.css" type="text/css">
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+
+    <title>Tombola Napoletana</title>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <ul class="navbar-list">
+                <li><a class="nav-item" id="new-game" href="#">Nuova Partita</a></li>
+                <li><a class="nav-item" href="index.html">Home</a></li>
+                <li><a class="nav-item" href="regole.html">Regole</a></li>
+                <li><a class="nav-item" href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+        <div class="modal" id="new-game-modal" draggable="true">
+              <div class="close-modal" id="close-new-game-modal"></div>
+            <div class="modal-content">
+             <h1>Nuova Partita</h1>
+             <hr/>
+             <p>Parametri Partita</p>
+                <label for="num-players">Numero di Giocatori:</label>
+                <input type="number" id="num-players" name="num-players" min="1" max="10" value="1"/>
+                <br/>
+                <label for="num-schede">Numero di Schede:</label>
+                <p>NB: Il numero di schede è uguale per tutti i giocatori.</p>
+                <select id="num-schede" name="num-schede">
+                    <option value="num-3">3</option>
+                    <option value="num-6">6</option>
+                    <option value="num-9">9</option>
+                </select>
+                  <button id="confirm-new-game">Conferma</button>
+            </div>
+           
+            
+        </div>
+    </header>
+    <main>
+        <section id="game-section">
+            <div id="drawn-number-container">
+                <h2>Numero Estratto</h2>
+                <div id="drawn-number">--</div>
+                <button id="draw-number-button">Estrai Numero</button>
+            </div>
+            <div id="players-container">
+                <!-- Player cards will be dynamically added here -->
+            </div>
+            <div id="drawn-numbers-container">
+                <h2>Numeri Estratti</h2>
+                <ul id="drawn-numbers-list">
+                    <!-- Extracted numbers will be listed here -->
+                </ul>
+        </section>
+    <script src="js/index.js" type="module"></script>
+    <script src="js/modal/modal.js" type="module"></script>
+    
+</body>
+</html>

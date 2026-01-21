@@ -1,0 +1,70 @@
+.modal {
+    position: fixed;
+    top: 5vw;
+    left: 8vw;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(37, 124, 223, 0.795);
+    /*display: flex;*/
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 10%;
+    
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.close-modal {
+    align-self: flex-start;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    background-color: #4ecbeb;
+}
+
+.close-modal::before {
+    content: '✖';
+    font-size: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+}
+
+#game-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    text-align: center;     
+    padding: 20px;
+    border: 2px solid #29B6F6;
+    border-radius: 8px; 
+    display: none;   
+    margin: 0 auto;
+}
+
+
+#game-section:hover {
+    animation: colorChange 0.5s forwards;
+}   
+
