@@ -83,6 +83,22 @@ Apri il tuo browser preferito e visita:
 
 ---
 
+## 🌐 Deployment su Vercel
+
+Questo progetto è configurato per essere distribuito facilmente su [Vercel](https://vercel.com/).
+
+### Passaggi per il Deployment:
+1. Carica il progetto su un repository GitHub.
+2. Vai sulla dashboard di Vercel e clicca su **"Add New"** > **"Project"**.
+3. Importa il repository della Tombola.
+4. Vercel rileverà automaticamente la configurazione tramite il file `vercel.json`.
+5. Clicca su **"Deploy"**.
+
+> [!IMPORTANT]
+> **Limitazioni Serverless**: Poiché Vercel utilizza Serverless Functions, le connessioni WebSocket di Socket.IO potrebbero non essere persistenti. La modalità locale funzionerà perfettamente, mentre quella online potrebbe risentire della natura stateless delle funzioni Vercel. Per un'esperienza multiplayer ottimale, si consiglia un hosting persistente come Railway o Render.
+
+---
+
 ## 📂 Struttura del Progetto
 
 Ecco una panoramica dei file principali:
