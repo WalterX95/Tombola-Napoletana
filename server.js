@@ -253,6 +253,11 @@ io.on('connection', (socket) => {
 // ============================================================
 //  AVVIO SERVER
 // ============================================================
-server.listen(PORT, () => {
-    console.log(`\n🎱 Tombola Server in ascolto su http://localhost:${PORT}\n`);
-});
+if (require.main === module) {
+    server.listen(PORT, () => {
+        console.log(`\n🎱 Tombola Server in ascolto su http://localhost:${PORT}\n`);
+    });
+}
+
+// Esporta l'app per Vercel
+module.exports = app;
