@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Regole della Tombola Napoletana – Come si gioca, le vincite, la smorfia e tutto quello che devi sapere.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <title>Regole – Tombola Napoletana</title>
+    <style>
+        /* ===== STILI SPECIFICI PAGINA REGOLE ===== */
+        .rules-page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 24px 140px;
+        }
+
+        .rules-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .rules-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--red-dark);
+            text-shadow: 2px 2px 0 #fff, 4px 4px 0 var(--gold-mid);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .rules-hero p {
+            color: var(--text-mid);
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        /* Card sezione */
+        .rules-card {
+            background: linear-gradient(160deg, #fff8e1, #fffdf6);
+            border: 2px solid var(--gold-mid);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rules-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--red-main), var(--red-dark));
+            border-radius: 4px 0 0 4px;
+        }
+
+        .rules-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--red-dark);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-card h2 .icon {
+            font-size: 1.5rem;
+        }
+
+        .rules-card p {
+            color: var(--text-dark);
+            line-height: 1.75;
+            margin-bottom: 10px;
+        }
+
+        .rules-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Lista vincite */
+        .win-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        .win-table th {
+            background: var(--red-dark);
+            color: #ffd54f;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            padding: 10px 16px;
+            text-align: left;
+        }
+
+        .win-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        .win-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        .win-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #e8d8b0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        .win-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .win-table tr:nth-child(even) td {
+            background: #fffbf0;
+        }
+
+        .win-table .win-name {
+            font-weight: 700;
+            color: var(--red-main);
+        }
+
+        .win-badge-inline {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Griglia cartella esempio */
+        .example-cartella {
+            margin-top: 16px;
+            overflow-x: auto;
+        }
+
+        .example-cartella table {
+            border-collapse: separate;
+            border-spacing: 3px;
+            margin: 0 auto;
+        }
+
+        .example-cartella td {
+            width: 44px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            border: 1.5px solid #c8a96e;
+            background: #fff;
+            color: var(--text-dark);
+        }
+
+        .example-cartella td.ex-empty {
+            background: #f0e8d5;
+            border-color: #ddd0b0;
+        }
+
+        .example-cartella td.ex-marked {
+            background: radial-gradient(circle, #ef5350, var(--red-dark));
+            color: #fff;
+            border-color: var(--red-dark);
+        }
+
+        /* Smorfia grid */
+        .smorfia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .smorfia-item {
+            background: #fff;
+            border: 1.5px solid #e0cfa0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .smorfia-num {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            color: var(--red-dark);
+            font-size: 1rem;
+            min-width: 28px;
+        }
+
+        .smorfia-text {
+            font-size: 0.8rem;
+            color: var(--text-mid);
+            line-height: 1.3;
+        }
+
+        /* Steps numerati */
+        .steps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .steps-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--red-dark);
+            color: #ffd54f;
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 0.9rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        }
+
+        .step-text {
+            padding-top: 5px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* CTA bottom */
+        .rules-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .rules-cta a {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--red-light), var(--red-dark));
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            padding: 14px 36px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 5px 0 var(--red-dark), var(--shadow-sm);
+            transition: filter 0.15s, transform 0.1s;
+        }
+
+        .rules-cta a:hover {
+            filter: brightness(1.12);
+        }
+
+        .rules-cta a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 var(--red-dark);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav id="navbar">
+            <div class="navbar-brand">🎱 Tombola</div>
+            <ul class="navbar-list">
+                <li><a class="nav-item" href="index.html">Nuova Partita</a></li>
+                <li><a class="nav-item" href="index.html">Home</a></li>
+                <li><a class="nav-item active" href="regole.html">Regole</a></li>
+                <li><a class="nav-item" href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rules-page">
+
+        <!-- HERO -->
+        <div class="rules-hero">
+            <h1>📜 Regole della Tombola</h1>
+            <p>La tradizione napoletana spiegata passo dopo passo</p>
+        </div>
+
+        <!-- 1. COS'È LA TOMBOLA -->
+        <div class="rules-card">
+            <h2><span class="icon">🎱</span> Cos'è la Tombola Napoletana</h2>
+            <p>
+                La Tombola è un gioco di origine napoletana, tradizionalmente giocato durante le festività natalizie in
+                famiglia.
+                È simile al Bingo, ma con radici culturali profonde: ogni numero ha un nome nella
+                <strong>Smorfia</strong>,
+                un antico sistema di interpretazione dei sogni e degli eventi della vita quotidiana.
+            </p>
+            <p>
+                Si gioca con un <strong>tabellone da 90 numeri</strong>, delle <strong>cartelle</strong> (schede di
+                gioco)
+                e un sacchetto con i numeri da estrarre uno alla volta.
+            </p>
+        </div>
+
+        <!-- 2. COME SI GIOCA -->
+        <div class="rules-card">
+            <h2><span class="icon">🎲</span> Come si Gioca</h2>
+            <ul class="steps-list">
+                <li>
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Distribuzione delle cartelle:</strong> ogni giocatore riceve una o più cartelle.
+                        Ogni cartella ha 3 righe e 9 colonne, con 5 numeri per riga (15 numeri in totale).
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Estrazione:</strong> il conduttore estrae un numero alla volta dal sacchetto (1–90)
+                        e lo annuncia con il suo nome della Smorfia.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Marcatura:</strong> ogni giocatore segna sulla propria cartella i numeri estratti
+                        man mano che vengono annunciati.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>Vincita:</strong> chi completa una combinazione valida (vedi tabella sotto)
+                        deve dichiararlo immediatamente. Il gioco continua fino alla Tombola.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 3. LA CARTELLA -->
+        <div class="rules-card">
+            <h2><span class="icon">📋</span> La Cartella</h2>
+            <p>
+                Ogni cartella è una griglia <strong>3 righe × 9 colonne</strong>. Ogni colonna copre una decina di
+                numeri:
+                la prima colonna contiene numeri dall'1 al 9, la seconda dal 10 al 19, e così via fino al 90.
+                Ogni riga ha esattamente <strong>5 numeri</strong> e 4 celle vuote.
+            </p>
+            <p>Esempio di cartella (le celle rosse sono numeri già estratti):</p>
+            <div class="example-cartella">
+                <table>
+                    <tr>
+                        <td class="ex-marked">7</td>
+                        <td class="ex-empty"></td>
+                        <td>22</td>
+                        <td class="ex-empty"></td>
+                        <td class="ex-marked">41</td>
+                        <td>55</td>
+                        <td class="ex-empty"></td>
+                        <td>74</td>
+                        <td class="ex-empty"></td>
+                    </tr>
+                    <tr>
+                        <td class="ex-empty"></td>
+                        <td class="ex-marked">13</td>
+                        <td class="ex-empty"></td>
+                        <td>38</td>
+                        <td class="ex-empty"></td>
+                        <td class="ex-marked">52</td>
+                        <td>66</td>
+                        <td class="ex-empty"></td>
+                        <td>88</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="ex-empty"></td>
+                        <td class="ex-marked">29</td>
+                        <td class="ex-empty"></td>
+                        <td>47</td>
+                        <td class="ex-empty"></td>
+                        <td class="ex-marked">63</td>
+                        <td class="ex-empty"></td>
+                        <td>82</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 4. LE VINCITE -->
+        <div class="rules-card">
+            <h2><span class="icon">🏆</span> Le Vincite</h2>
+            <p>Le vincite si ottengono completando numeri consecutivi sulla stessa riga:</p>
+            <table class="win-table">
+                <thead>
+                    <tr>
+                        <th>Vincita</th>
+                        <th>Condizione</th>
+                        <th>Descrizione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="win-name">
+                            <span class="win-badge-inline badge-ambo">AMBO</span>
+                        </td>
+                        <td>2 numeri sulla stessa riga</td>
+                        <td>Prima vincita raggiungibile. Si può ottenere più volte.</td>
+                    </tr>
+                    <tr>
+                        <td class="win-name">
+                            <span class="win-badge-inline badge-terno">TERNO</span>
+                        </td>
+                        <td>3 numeri sulla stessa riga</td>
+                        <td>Tre numeri marcati nella stessa riga della cartella.</td>
+                    </tr>
+                    <tr>
+                        <td class="win-name">
+                            <span class="win-badge-inline badge-quaterna">QUATERNA</span>
+                        </td>
+                        <td>4 numeri sulla stessa riga</td>
+                        <td>Quattro numeri marcati nella stessa riga.</td>
+                    </tr>
+                    <tr>
+                        <td class="win-name">
+                            <span class="win-badge-inline badge-cinquina">CINQUINA</span>
+                        </td>
+                        <td>5 numeri sulla stessa riga</td>
+                        <td>Tutti e 5 i numeri di una riga completati.</td>
+                    </tr>
+                    <tr>
+                        <td class="win-name">
+                            <span class="win-badge-inline badge-tombola">TOMBOLA</span>
+                        </td>
+                        <td>Tutti i 15 numeri della cartella</td>
+                        <td>Vincita finale. Chi la ottiene vince la partita!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. LA SMORFIA -->
+        <div class="rules-card">
+            <h2><span class="icon">📖</span> La Smorfia Napoletana</h2>
+            <p>
+                La <strong>Smorfia</strong> è un antico libro napoletano che associa ogni numero dall'1 al 90
+                a un significato simbolico, spesso legato a sogni, eventi quotidiani o figure della tradizione popolare.
+                Durante la tombola, il conduttore annuncia il numero con il suo nome della Smorfia per rendere il gioco
+                più divertente e tradizionale.
+            </p>
+            <p>Alcuni esempi celebri:</p>
+            <div class="smorfia-grid">
+                <div class="smorfia-item"><span class="smorfia-num">1</span><span class="smorfia-text">L'Italia</span>
+                </div>
+                <div class="smorfia-item"><span class="smorfia-num">8</span><span class="smorfia-text">'A Maronna</span>
+                </div>
+                <div class="smorfia-item"><span class="smorfia-num">13</span><span
+                        class="smorfia-text">Sant'Antonio</span></div>
+                <div class="smorfia-item"><span class="smorfia-num">17</span><span class="smorfia-text">'A
+                        disgrazia</span></div>
+                <div class="smorfia-item"><span class="smorfia-num">22</span><span class="smorfia-text">'O pazzo</span>
+                </div>
+                <div class="smorfia-item"><span class="smorfia-num">33</span><span class="smorfia-text">L'anni 'e
+                        Cristo</span></div>
+                <div class="smorfia-item"><span class="smorfia-num">47</span><span class="smorfia-text">'O muorto</span>
+                </div>
+                <div class="smorfia-item"><span class="smorfia-num">52</span><span class="smorfia-text">'A mamma</span>
+                </div>
+                <div class="smorfia-item"><span class="smorfia-num">75</span><span
+                        class="smorfia-text">Pulcinella</span></div>
+                <div class="smorfia-item"><span class="smorfia-num">90</span><span class="smorfia-text">'A paura</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. MODALITÀ ONLINE -->
+        <div class="rules-card">
+            <h2><span class="icon">🌐</span> Modalità Multiplayer Online</h2>
+            <p>
+                Con questa versione digitale puoi giocare anche <strong>online con amici e familiari</strong>
+                che si trovano in luoghi diversi. Ecco come funziona:
+            </p>
+            <ul class="steps-list">
+                <li>
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        Dalla schermata principale scegli <strong>"Multiplayer Online"</strong>.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        Il primo giocatore crea una stanza e riceve un <strong>codice univoco</strong> da condividere.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        Gli altri giocatori inseriscono il codice e si uniscono alla sala d'attesa.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        Il <strong>conduttore</strong> (chi ha creato la stanza) avvia la partita e gestisce le
+                        estrazioni.
+                        Tutti gli altri vedono i numeri in tempo reale.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="rules-cta">
+            <a href="index.html">🎲 Inizia a Giocare</a>
+        </div>
+
+    </main>
+
+    <!-- NUMERI ESTRATTI placeholder (per coerenza visiva) -->
+    <div id="drawn-numbers-container" style="display:none;"></div>
+
+</body>
+
+</html>

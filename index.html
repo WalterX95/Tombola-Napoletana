@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style2.css" type="text/css">
-    <link rel="stylesheet" href="/css/modal/modal.css" type="text/css">
-    <link rel="icon" type="image/png" href="/img/favicon.ico">
-
+    <meta name="description"
+        content="Tombola Napoletana – Gioca online con le cartelle, la smorfia e tutte le vincite: ambo, terno, quaterna, cinquina e tombola!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
     <title>Tombola Napoletana</title>
 </head>
+
 <body>
+
+    <!-- ===== NAVBAR ===== -->
     <header>
         <nav id="navbar">
+            <div class="navbar-brand">🎱 Tombola</div>
             <ul class="navbar-list">
                 <li><a class="nav-item" id="new-game" href="#">Nuova Partita</a></li>
                 <li><a class="nav-item" href="index.html">Home</a></li>
@@ -19,46 +29,168 @@
                 <li><a class="nav-item" href="contatti.html">Contatti</a></li>
             </ul>
         </nav>
-        <div class="modal" id="new-game-modal" draggable="true">
-              <div class="close-modal" id="close-new-game-modal"></div>
-            <div class="modal-content">
-             <h1>Nuova Partita</h1>
-             <hr/>
-             <p>Parametri Partita</p>
-                <label for="num-players">Numero di Giocatori:</label>
-                <input type="number" id="num-players" name="num-players" min="1" max="10" value="1"/>
-                <br/>
-                <label for="num-schede">Numero di Schede:</label>
-                <p>NB: Il numero di schede è uguale per tutti i giocatori.</p>
-                <select id="num-schede" name="num-schede">
-                    <option value="num-3">3</option>
-                    <option value="num-6">6</option>
-                    <option value="num-9">9</option>
-                </select>
-                  <button id="confirm-new-game">Conferma</button>
-            </div>
-           
-            
-        </div>
     </header>
+
+    <!-- ===== MODAL NUOVA PARTITA (Locale) ===== -->
+    <div class="modal" id="new-game-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="close-modal" id="close-new-game-modal" title="Chiudi"></div>
+        <div class="modal-content">
+            <h1 id="modal-title">Nuova Partita</h1>
+            <hr />
+            <div class="modal-form">
+                <div class="form-group">
+                    <label for="num-players">Numero di Giocatori:</label>
+                    <input type="number" id="num-players" name="num-players" min="1" max="10" value="2" />
+                </div>
+                <div class="form-group">
+                    <label for="num-schede">Schede per Giocatore:</label>
+                    <p class="form-note">Il numero di schede è uguale per tutti i giocatori.</p>
+                    <select id="num-schede" name="num-schede">
+                        <option value="num-3">3 schede</option>
+                        <option value="num-6">6 schede</option>
+                        <option value="num-9">9 schede</option>
+                    </select>
+                </div>
+                <button id="confirm-new-game" class="btn-primary">🎲 Inizia la Partita</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL VINCITA ===== -->
+    <div class="win-modal" id="win-modal" role="alertdialog" aria-modal="true">
+        <div class="win-modal-content">
+            <div id="win-modal-message"></div>
+            <button id="close-win-modal" class="btn-secondary">Continua</button>
+        </div>
+    </div>
+
+    <!-- ===== LOBBY – SCELTA MODALITÀ ===== -->
+    <div id="lobby-section">
+
+        <!-- SCELTA: Locale o Online -->
+        <div id="mode-choice" class="lobby-panel">
+            <div class="lobby-hero">
+                <div class="lobby-title">🎱 Tombola Napoletana</div>
+                <div class="lobby-subtitle">Scegli come vuoi giocare</div>
+            </div>
+            <div class="mode-cards">
+                <button class="mode-card" id="btn-mode-local">
+                    <div class="mode-icon">🏠</div>
+                    <div class="mode-name">Partita Locale</div>
+                    <div class="mode-desc">Gioca sullo stesso dispositivo con amici e familiari</div>
+                </button>
+                <button class="mode-card" id="btn-mode-online">
+                    <div class="mode-icon">🌐</div>
+                    <div class="mode-name">Multiplayer Online</div>
+                    <div class="mode-desc">Crea una stanza o unisciti a una partita online</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- LOBBY ONLINE -->
+        <div id="online-lobby" class="lobby-panel" style="display:none;">
+            <div class="lobby-hero">
+                <div class="lobby-title">🌐 Multiplayer Online</div>
+                <div class="lobby-subtitle">Crea una nuova stanza o unisciti con un codice</div>
+            </div>
+
+            <div id="lobby-error" class="lobby-error" style="display:none;"></div>
+
+            <div class="online-form">
+                <div class="form-group">
+                    <label for="input-player-name">Il tuo nome:</label>
+                    <input type="text" id="input-player-name" placeholder="Es. Nonna Maria" maxlength="20" />
+                </div>
+
+                <div class="online-form-split">
+                    <!-- CREA STANZA -->
+                    <div class="online-form-box">
+                        <h3>Crea Stanza</h3>
+                        <div class="form-group">
+                            <label for="online-num-schede">Schede per giocatore:</label>
+                            <select id="online-num-schede">
+                                <option value="3">3 schede</option>
+                                <option value="6">6 schede</option>
+                                <option value="9">9 schede</option>
+                            </select>
+                        </div>
+                        <button id="btn-create-room" class="btn-primary">🏠 Crea Stanza</button>
+                    </div>
+
+                    <div class="online-form-divider">oppure</div>
+
+                    <!-- UNISCITI -->
+                    <div class="online-form-box">
+                        <h3>Unisciti</h3>
+                        <div class="form-group">
+                            <label for="input-room-code">Codice Stanza:</label>
+                            <input type="text" id="input-room-code" placeholder="Es. ABC123" maxlength="6"
+                                style="text-transform:uppercase; letter-spacing:4px; font-size:1.2rem;" />
+                        </div>
+                        <button id="btn-join-room" class="btn-secondary">🚪 Entra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SALA D'ATTESA -->
+        <div id="waiting-room" class="lobby-panel" style="display:none;">
+            <div class="lobby-hero">
+                <div class="lobby-title">⏳ Sala d'Attesa</div>
+                <div class="lobby-subtitle">
+                    Codice stanza: <span id="waiting-room-code" class="room-code-badge">------</span>
+                    <button class="btn-copy-code" id="btn-copy-code" title="Copia codice">📋</button>
+                </div>
+            </div>
+
+            <p id="waiting-status" class="waiting-status-text">In attesa di altri giocatori…</p>
+
+            <ul id="waiting-player-list" class="waiting-player-list"></ul>
+
+            <button id="btn-start-online" class="btn-primary" style="display:none; margin-top:20px;">
+                🎲 Avvia la Partita
+            </button>
+        </div>
+
+    </div><!-- /lobby-section -->
+
+    <!-- ===== GIOCO LOCALE ===== -->
     <main>
         <section id="game-section">
             <div id="drawn-number-container">
                 <h2>Numero Estratto</h2>
                 <div id="drawn-number">--</div>
-                <button id="draw-number-button">Estrai Numero</button>
+                <button id="draw-number-button">🎱 Estrai Numero</button>
             </div>
-            <div id="players-container">
-                <!-- Player cards will be dynamically added here -->
-            </div>
-            <div id="drawn-numbers-container">
-                <h2>Numeri Estratti</h2>
-                <ul id="drawn-numbers-list">
-                    <!-- Extracted numbers will be listed here -->
-                </ul>
+            <div id="players-container"></div>
         </section>
+    </main>
+
+    <!-- ===== GIOCO ONLINE ===== -->
+    <section id="online-game-section" style="display:none;">
+        <div id="online-drawn-number-container">
+            <h2>Numero Estratto</h2>
+            <div id="online-drawn-display">
+                <span id="online-drawn-number">--</span>
+                <span id="online-drawn-phrase"></span>
+            </div>
+            <button id="btn-online-draw" style="display:none;">🎱 Estrai Numero</button>
+        </div>
+        <div id="online-players-container"></div>
+    </section>
+
+    <!-- ===== NUMERI ESTRATTI (fisso in basso) ===== -->
+    <div id="drawn-numbers-container">
+        <h2>Estratti</h2>
+        <ul id="drawn-numbers-list"></ul>
+        <!-- Lista numeri online (condivisa) -->
+        <ul id="online-drawn-list" style="display:none;"></ul>
+    </div>
+
+    <!-- Socket.IO client (servito dal server Node) -->
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/index.js" type="module"></script>
-    <script src="js/modal/modal.js" type="module"></script>
-    
+
 </body>
+
 </html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contatti – Tombola Napoletana. Scrivici per segnalazioni, suggerimenti o domande sul gioco.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <title>Contatti – Tombola Napoletana</title>
+    <style>
+        /* ===== STILI SPECIFICI PAGINA CONTATTI ===== */
+        .contact-page {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 24px 140px;
+        }
+
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .contact-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--red-dark);
+            text-shadow: 2px 2px 0 #fff, 4px 4px 0 var(--gold-mid);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .contact-hero p {
+            color: var(--text-mid);
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        /* Layout a due colonne */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        @media (max-width: 680px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Info card sinistra */
+        .contact-info-card {
+            background: linear-gradient(160deg, #fff8e1, #fffdf6);
+            border: 2px solid var(--gold-mid);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-info-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--red-dark);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: var(--red-dark);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .info-value {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-value a {
+            color: var(--red-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .info-value a:hover {
+            color: var(--red-dark);
+            text-decoration: underline;
+        }
+
+        .divider-line {
+            border: none;
+            border-top: 1px solid #e0cfa0;
+            margin: 0;
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--red-dark);
+            color: #ffd54f;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            transition: transform 0.15s, filter 0.15s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+        }
+
+        /* Form card destra */
+        .contact-form-card {
+            background: linear-gradient(160deg, #fff8e1, #fffdf6);
+            border: 2px solid var(--gold-mid);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-form-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--red-dark);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-form label {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            letter-spacing: 0.3px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--gold-mid);
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--red-main);
+            box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.12);
+        }
+
+        .contact-form textarea {
+            min-height: 130px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--red-light), var(--red-dark));
+            color: #fff;
+            border: 2px solid var(--red-dark);
+            padding: 13px 28px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 var(--red-dark), var(--shadow-sm);
+            transition: filter 0.15s, transform 0.1s;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .btn-submit:hover {
+            filter: brightness(1.12);
+        }
+
+        .btn-submit:active {
+            box-shadow: 0 2px 0 var(--red-dark);
+            transform: translateY(3px);
+        }
+
+        /* Messaggio di successo */
+        .form-success {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            color: #1b5e20;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .form-success .success-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* FAQ section */
+        .faq-section {
+            margin-top: 32px;
+        }
+
+        .faq-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--red-dark);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: linear-gradient(160deg, #fff8e1, #fffdf6);
+            border: 2px solid var(--gold-mid);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 16px 20px;
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: none;
+            border-radius: 0;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(183, 28, 28, 0.05);
+        }
+
+        .faq-question .faq-arrow {
+            font-size: 0.8rem;
+            color: var(--red-main);
+            transition: transform 0.25s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.25s;
+            padding: 0 20px;
+            color: var(--text-mid);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav id="navbar">
+            <div class="navbar-brand">🎱 Tombola</div>
+            <ul class="navbar-list">
+                <li><a class="nav-item" href="index.html">Nuova Partita</a></li>
+                <li><a class="nav-item" href="index.html">Home</a></li>
+                <li><a class="nav-item" href="regole.html">Regole</a></li>
+                <li><a class="nav-item active" href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-page">
+
+        <!-- HERO -->
+        <div class="contact-hero">
+            <h1>✉️ Contatti</h1>
+            <p>Hai domande, segnalazioni o vuoi dirci qualcosa? Scrivici!</p>
+        </div>
+
+        <!-- LAYOUT PRINCIPALE -->
+        <div class="contact-layout">
+
+            <!-- COLONNA SINISTRA: info -->
+            <div class="contact-info-card">
+                <h2>📍 Informazioni</h2>
+
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div>
+                        <div class="info-label">Email</div>
+                        <div class="info-value">
+                            <a href="mailto:info@tombola-napoletana.it">info@tombola-napoletana.it</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider-line">
+
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div>
+                        <div class="info-label">Tempi di risposta</div>
+                        <div class="info-value">Di solito rispondiamo entro 24–48 ore nei giorni feriali.</div>
+                    </div>
+                </div>
+
+                <hr class="divider-line">
+
+                <div class="info-item">
+                    <div class="info-icon">🐛</div>
+                    <div>
+                        <div class="info-label">Segnala un bug</div>
+                        <div class="info-value">
+                            Hai trovato un problema? Descrivilo nel form indicando il browser e il dispositivo usato.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider-line">
+
+                <div>
+                    <div class="info-label" style="margin-bottom:10px;">Seguici</div>
+                    <div class="social-links">
+                        <a href="#" class="social-btn">🐙 GitHub</a>
+                        <a href="#" class="social-btn">🐦 Twitter</a>
+                        <a href="#" class="social-btn">📘 Facebook</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA DESTRA: form -->
+            <div class="contact-form-card">
+                <h2>✉️ Scrivici</h2>
+
+                <form class="contact-form" id="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Nome *</label>
+                            <input type="text" id="contact-name" placeholder="Il tuo nome" required maxlength="60">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email *</label>
+                            <input type="email" id="contact-email" placeholder="tua@email.it" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-subject">Argomento</label>
+                        <select id="contact-subject">
+                            <option value="">Seleziona un argomento…</option>
+                            <option value="bug">🐛 Segnalazione bug</option>
+                            <option value="suggerimento">💡 Suggerimento</option>
+                            <option value="regole">📜 Domanda sulle regole</option>
+                            <option value="online">🌐 Problema multiplayer</option>
+                            <option value="altro">💬 Altro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Messaggio *</label>
+                        <textarea id="contact-message" placeholder="Scrivi qui il tuo messaggio…" required
+                            maxlength="1000"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">📨 Invia Messaggio</button>
+                </form>
+
+                <!-- Messaggio di successo -->
+                <div class="form-success" id="form-success">
+                    <span class="success-icon">🎉</span>
+                    <strong>Messaggio inviato!</strong><br>
+                    Ti risponderemo al più presto. Grazie per averci scritto!
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2>❓ Domande Frequenti</h2>
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Il gioco è gratuito?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sì, Tombola Napoletana è completamente gratuita. Non è richiesta registrazione né abbonamento
+                        per giocare, né in modalità locale né online.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Quante persone possono giocare online nella stessa stanza?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Attualmente ogni stanza supporta fino a <strong>8 giocatori</strong> contemporaneamente. Il
+                        conduttore (chi crea la stanza) gestisce le estrazioni per tutti.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Cosa succede se il conduttore si disconnette?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Se il conduttore si disconnette, il ruolo viene passato automaticamente al primo giocatore
+                        rimasto nella stanza, che potrà continuare a gestire le estrazioni.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Posso giocare da smartphone o tablet?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sì! Il gioco è responsive e funziona su qualsiasi dispositivo con un browser moderno:
+                        smartphone, tablet, laptop e desktop.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        I numeri estratti sono davvero casuali?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sì. All'inizio di ogni partita viene generata una lista mescolata di tutti i 90 numeri usando
+                        l'algoritmo Fisher-Yates. I numeri vengono estratti uno alla volta senza ripetizioni,
+                        esattamente come nel gioco tradizionale.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- NUMERI ESTRATTI placeholder -->
+    <div id="drawn-numbers-container" style="display:none;"></div>
+
+    <script>
+        // ===== FORM SUBMIT (simulato) =====
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+
+            if (!name || !email || !message) {
+                // Evidenzia campi vuoti
+                [
+                    { id: 'contact-name', val: name },
+                    { id: 'contact-email', val: email },
+                    { id: 'contact-message', val: message },
+                ].forEach(({ id, val }) => {
+                    const el = document.getElementById(id);
+                    el.style.borderColor = val ? '' : '#b71c1c';
+                });
+                return;
+            }
+
+            // Simula invio
+            this.style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+        });
+
+        // Reset bordo rosso su input
+        document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(el => {
+            el.addEventListener('input', () => { el.style.borderColor = ''; });
+        });
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+
+                // Chiudi tutti
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // Apri quello cliccato (se era chiuso)
+                if (!isOpen) {
+                    item.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
